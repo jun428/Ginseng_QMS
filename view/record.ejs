@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title>Record</title>
+	<style>
+		.nav {
+			background-color: #b9d7ff;
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+		.nav li {
+			float: left;
+			border-right: solid 1px white;
+		}
+		.nav li:last-child { border-right: none; }
+        
+		.nav li a {
+			display: block;
+			background-color: #b9d7ff;
+			color: #000000;
+			padding: 8px;
+			text-decoration: none;
+			text-align: center;
+			font-weight: bold;
+		}
+		.nav li a:hover {
+			background-color: #CD853F;
+			color: white;
+		}
+
+        /*수직 메뉴*/
+        ul.dept li{
+            float : none;
+        }
+
+        /*하위 메뉴 숨기기*/
+        .dept{
+            list-style: none;
+            position: absolute;
+            display: none;
+			margin: 0;
+			padding: 0;
+        }
+
+        /*마우스 오버*/
+        .nav li:hover ul{
+            display: block;
+        }
+	</style>
+</head>
+<body>
+	<h1>System</h1>
+        <ul class="nav">
+            <li><a href="privReg">Register</a></li>
+            <li><a href="">Application</a>
+                <ul class="dept">
+                    <li><a href="">Inspection1</a></li>
+                    <li><a href="">Report</a></li>
+                    <li><a href="">Inspection2</a></li>
+                </ul>
+            </li>
+            <li><a href="">Record</a>
+            <li><a class="current" href="">Result</a></li>
+            <ul style="float:right; list-style-type:none;">
+                <li><a href="/">Home</a></li>
+            </ul>       
+        </ul> 
+</body>
+</html>
