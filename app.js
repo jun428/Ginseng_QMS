@@ -18,10 +18,12 @@ app.get('/meta', (req, res) => {
     res.render('meta.ejs')
 })
 
+//index page
 app.get('/', (req, res) => {
     res.render('index.ejs')
 })
 
+//private register
 app.get('/privReg', (req, res) => {
     res.render('privReg.ejs')
 })
@@ -89,12 +91,46 @@ app.post('/privDeploy', (req, res) => {
 
 })
 
+
+//Application
+app.get('/insepction1', (req, res) => {
+    res.render('inspection1.ejs')
+})
+
+app.post('/insepction1', (req, res) => {
+
+})
+
+app.get('/report', (req, res) => {
+    res.render('report.ejs')
+})
+
+app.post('/report', (req, res) => {
+
+})
+
+app.get('/insepction2', (req, res) => {
+    res.render('inspection2.ejs')
+})
+
+app.post('/insepction2', (req, res) => {
+
+})
+
+
 app.get('/record', (req, res) => {
     res.render('record.ejs')
 })
 
 app.post('/record', (req, res) => {
-    
+
+})
+
+app.get('/result', (req, res) => {
+    res.render('result.ejs')
+})
+
+app.post('/result', (req, res) => {
 
 })
 
