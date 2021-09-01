@@ -4,7 +4,8 @@ const jwt = require('jsonwebtoken')
 const fs = require('fs')
 
 const privTran = require('./privTran.js')
-//var myKey = fs.readFileSync("privateKey.pem", "utf8")
+const pubTran = require('./publicTran.js')
+const myKey = fs.readFileSync("privateKey.pem", "utf8")
 
 const app = express()
 
@@ -48,7 +49,7 @@ app.get('/Auth', (req, res) => {
 })
 
 app.post('/Auth', (req, res) => {
-    const pubKey = req.body.key
+    const pubKey = req.body.Tessera
 
     const token = jwt.sign({
         "permissions": ["*:*"],
@@ -58,7 +59,28 @@ app.post('/Auth', (req, res) => {
       {expiresIn: '1h', algorithm: 'RS256'})
 
       res.cookie('token',token)
+      
       res.redirect('/')
+    
+      /*
+    pubTran.deploy(pubKey).then(result =>{
+        res.send(result)
+    })
+    */
+     
+})
+
+//auth test
+app.get('/test', (req, res) => {
+    res.render('test.ejs')
+})
+
+app.post('/test', (req, res) => {
+    const key = req.body.Besu
+
+    privTran.view(groupID,CA).then(result =>{
+        res.send(result)
+    })
 })
 
 app.get('/view', (req, res) => {

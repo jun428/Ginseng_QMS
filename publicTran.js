@@ -1,10 +1,22 @@
-var web3 = require('web3')
+var Web3 = require('web3')
 var {tessera,besu} = require('./key')
-var web3 = new web3('http://localhost:8545')
+var web3 = new Web3('http://localhost:8545')
 //abi
 
-web3 = new EEAClient(web3,1337)
 
 exports.deploy =async (besuPrivKey) =>{
-    var tran = {from:besuPrivKey,}
+
+
+    var tran = {
+        gas : 2000000,
+        gasPrice:0
+    }
+
+    const signRLP = await web3.eth.accounts.signTransaction(tran,besuPrivKey)
+    const receipt = await web3.eth.sendSignedTransaction(signRLP.rawTransaction)
+
+    await console.log(receipt)
+
+    return receipt
+
 }

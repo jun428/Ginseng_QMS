@@ -82,7 +82,7 @@ const parm = ['jun','960428','Korea brbrbrbrb 751-2','010123456789']
 
 const test = this.regFunc(besu.node3.besu_pri, tessera.node3.tessera_pub, grpId, CA, parm)
 test.then(console.log)
-*/
+*/accounts
 //this.regFunc(besu.node3.besu_pri,'3nOqexhTLz7vHUERLbiMbGRqOu6pFhqoCRtdYSwZfEc=',[tessera.node2.tessera_pub],besu.node2.address,'0x1234').then(console.log)
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
 exports.deployReg =async (besuPrivKey, tesseraPubKey, parm) =>{
