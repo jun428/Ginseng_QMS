@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const fs = require('fs')
 
 const privTran = require('./privTran.js')
+const privReg = require('./privReg.js') //frist
 const pubTran = require('./publicTran.js')
 const myKey = fs.readFileSync("privateKey.pem", "utf8")
 
@@ -30,17 +31,32 @@ app.get('/privReg', (req, res) => {
 })
 
 app.post('/privReg', (req, res) => {
-    const besuPrivKey = req.body.besuPrivKey
-    const tesseraPubKey = req.body.tesseraPubKey
-    const name = req.body.name
-    const brithday = req.body.brithday
-    const address = req.body.address
-    const phone = req.body.phone
+    var besuPrivKey = req.body.besuPrivKey
+    var tesseraPubKey = req.body.tesseraPubKey
+    var name = req.body.name
+    var brithday = req.body.brithday
+    var address = req.body.address
+    var phone = req.body.phone
 
     const parm =[name,brithday,address,phone]
     console.log(parm)
-    privTran.deployReg(besuPrivKey,tesseraPubKey,parm).then(result =>{
-        res.send(result)
+
+
+    privReg.deployReg(besuPrivKey,tesseraPubKey,parm).then(result =>{
+        //res.send(result)
+
+        privReg.call(
+            result.privacyGroupId,
+            result.contractAddress
+        ).then(result =>{
+            res.render('privRegReult.ejs',
+            {'Name' : result[0],
+            'Brithday' : result[1],
+            'Address' : result[2],
+            'phone' : result[3],
+            'privateAddr' : result[4],
+        })
+        })
     })
 })
 
@@ -78,9 +94,17 @@ app.get('/test', (req, res) => {
 app.post('/test', (req, res) => {
     const key = req.body.Besu
 
+    pubTran.deploy(key).then(result => {
+        console.log(result.from)
+        res.render('test copy.ejs',{'address' : result.from})
+    })
+
+
+    /*
     privTran.view(groupID,CA).then(result =>{
         res.send(result)
     })
+    */
 })
 
 app.get('/view', (req, res) => {
