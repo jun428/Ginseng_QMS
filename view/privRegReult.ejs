@@ -54,28 +54,31 @@
 	<h1>Register</h1>
     <ul class="nav">
         <li><a href="privReg">Register</a></li>
-        <li><a href="insepction1">Application</a>
+        <li><a href="inspection1">Application</a>
             <ul class="dept">
-                <li><a href="insepction1">Inspection1</a></li>
-                <li><a href="Report">Report</a></li>
-                <li><a href="insepction2">Inspection2</a></li>
+                <li><a href="inspection1">Inspection1</a></li>
+                <li><a href="report">Report</a></li>
+                <li><a href="inspection2">Inspection2</a></li>
             </ul>
         </li>
         <li><a href="record">Record</a>
         <li><a href="result">Result</a></li>
         <ul style="float:right; list-style-type:none;">
-            <li><a href="/">Sign</a></li>
+            <li><a href="/test">Test</a></li>
+            <li><a href="/Auth">Sign</a></li>
             <li><a href="/">Home</a></li>
         </ul>       
     </ul> 
     <br>
     <h3>Registration Success</h3>
     <br>
+    <p>Private data address : <%= privateAddr %></p>
+    <p>Private GroupID : <%= GroupID %></p>
     <p>Name : <%= Name %></p>
     <p>Brithday : <%= Brithday %></p>
     <p>Address : <%= Address %></p>
     <p>Phone Number : <%= phone %></p>
-    <p>Private Address : <%= privateAddr %></p>
+    <p>Who am I : <%= whoami %></p>
 
 </body>
 

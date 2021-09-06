@@ -14,6 +14,9 @@ const EEAClient = require("web3-eea")
 web3 = new EEAClient(web3,1337)
 */
 
+
+const time = require('./unixTime.js')
+
 //abi
 const fs = require('fs')
 const dataBuffer = fs.readFileSync('./compile/PrivReg.abi')
@@ -71,9 +74,9 @@ exports.deployReg =async (besuPrivKey, tesseraPubKey, parm) =>{
     const txHash = await web3.priv.generateAndSendRawTransaction(deployTran)
     const receipt = await web3.priv.waitForTransactionReceipt(txHash)
     
-
-    console.log("Tx hash : "+txHash)
-    console.log(receipt)
+    console.log("privReg : deployReg\n")
+    await console.log("Tx hash : "+txHash)
+    await console.log(receipt)
 
 
     return receipt
@@ -81,6 +84,28 @@ exports.deployReg =async (besuPrivKey, tesseraPubKey, parm) =>{
 }
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+exports.getLog =async (GroupID, privCA) =>{
+
+    let data = {
+        address : privCA
+    }
+
+    let result = await web3.priv.getLogs(GroupID,data)
+    let logData = await web3.eth.abi.decodeParameters(dataJSON[1].inputs,result[0].data)
+
+
+    console.log("privReg : getLog\n")
+    await console.log(logData)
+
+    return {
+        'log' : logData,
+        'GroupID' : GroupID,
+        'CA' : privCA
+    }
+
+ }
+
+/*
 exports.call =async (privacyGroupId, contractAddress, besuPrivKey, tesseraPubKey) =>{
 
 
@@ -100,6 +125,9 @@ exports.call =async (privacyGroupId, contractAddress, besuPrivKey, tesseraPubKey
     )
 
     console.log(result)
-    return result
-    
+    return {
+        'view' : result,
+        'GroupID' : privacyGroupId,
+        'CA' : contractAddress}    
 }
+*/

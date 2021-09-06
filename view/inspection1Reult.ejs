@@ -51,7 +51,7 @@
 	</style>
 </head>
 <body>
-	<h1>Inspection 2</h1>
+	<h1>Inspection 1</h1>
     <ul class="nav">
         <li><a href="privReg">Register</a></li>
         <li><a href="inspection1">Application</a>
@@ -68,32 +68,22 @@
             <li><a href="/Auth">Sign</a></li>
             <li><a href="/">Home</a></li>
         </ul>       
-    </ul> 
-    <form action="./inspection2" method="post">
-        <ul>
-            <label>Prodution address</label>
-            <br>
-            <input name=besuPrivKey type="text">        
-        </ul>
-        <ul>
-            <label>Total area</label>
-            <br>
-            <input name=tesseraPubKey type="text">        
-        </ul>
-        <ul>
-            <label>Used area</label>
-            <br>
-            <input name=name type="text">        
-        </ul>
-        <ul>
-            <label>Planting date</label>
-            <br>
-            <input name=brithday type="month">        
-        </ul> 
-        <ul>
-            <input type="submit" value='regist'>
-        </ul>
-    </form>
+    </ul>
+
+
+    <h2>Inspection1 application completed</h2>
+
+    <p>Who am i : <%= whoami %></p>
+    <p>Private Address : <%= privCA %></p>
+    <p>Insepction1 contract Address : <%= CA %></p>
+    <br>
+    <h4>Reception record</h4>
+    <p>Reception time : <%= getTime %></p>
+    <p>prodution Address : <%= produtionAddr %></p>
+    <p>Total Area : <%= totalArea %></p>
+    <p>Used Area : <%= usedArea %></p>
+    <p>Planting Date : <%= plantingDate %></p>
+
 
 </body>
 

@@ -54,43 +54,54 @@
 	<h1>Inspection 1</h1>
     <ul class="nav">
         <li><a href="privReg">Register</a></li>
-        <li><a href="insepction1">Application</a>
+        <li><a href="inspection1">Application</a>
             <ul class="dept">
-                <li><a href="insepction1">Inspection1</a></li>
-                <li><a href="Report">Report</a></li>
-                <li><a href="insepction2">Inspection2</a></li>
+                <li><a href="inspection1">Inspection1</a></li>
+                <li><a href="report">Report</a></li>
+                <li><a href="inspection2">Inspection2</a></li>
             </ul>
         </li>
         <li><a href="record">Record</a>
         <li><a href="result">Result</a></li>
         <ul style="float:right; list-style-type:none;">
-            <li><a href="/">Sign</a></li>
+            <li><a href="/test">Test</a></li>
+            <li><a href="/Auth">Sign</a></li>
             <li><a href="/">Home</a></li>
         </ul>       
     </ul> 
     <form action="./inspection1" method="post">
         <ul>
-            <label>Prodution address</label>
+            <label>Private data address</label>
+            <br>
+            <input name=PrivCA type="text">        
+        </ul>
+        <ul>
+            <label>Besu PrivKey </label>
             <br>
             <input name=besuPrivKey type="text">        
         </ul>
         <ul>
+            <label>Prodution address</label>
+            <br>
+            <input name=ProdutionAddr type="text">        
+        </ul>
+        <ul>
             <label>Total area</label>
             <br>
-            <input name=tesseraPubKey type="text">        
+            <input name=TotalArea type="text">        
         </ul>
         <ul>
             <label>Used area</label>
             <br>
-            <input name=name type="text">        
+            <input name=UsedArea type="text">        
         </ul>
         <ul>
             <label>Planting date</label>
             <br>
-            <input name=brithday type="month">        
+            <input name=PlantDate type="month">        
         </ul> 
         <ul>
-            <input type="submit" value='regist'>
+            <input type="submit" value='submit'>
         </ul>
     </form>
 

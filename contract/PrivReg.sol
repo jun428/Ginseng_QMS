@@ -3,16 +3,11 @@ pragma solidity ^0.7.0;
 
 contract PrivReg{
 
-    struct info{
-        string name;
-        string birthday;
-        string addr;
-        string phone;
-        address whoami;
-    }
-    info _info;
+
+    address whoami;
     
     event successLog(
+        uint time,
         string name,
         string birthday,
         string addr,
@@ -21,7 +16,7 @@ contract PrivReg{
     );
         
     modifier check{
-        require(_info.whoami==msg.sender,"test check");
+        require(whoami==msg.sender,"test check");
         _;
     }
 
@@ -31,12 +26,8 @@ contract PrivReg{
         string memory _addr,
         string memory _phone
         ){
-            _info.name=_name;
-            _info.birthday=_birthday;
-            _info.addr=_addr;
-            _info.phone=_phone;
-            _info.whoami=msg.sender;
-            emit successLog(_name,_birthday,_addr,_phone,msg.sender);
+            whoami=msg.sender;
+            emit successLog(block.timestamp,_name,_birthday,_addr,_phone,msg.sender);
     }
     
     function modifyData(
@@ -45,16 +36,6 @@ contract PrivReg{
         string memory _addr,
         string memory _phone
         ) check public{
-            _info.name=_name;
-            _info.birthday=_birthday;
-            _info.addr=_addr;
-            _info.phone=_phone;
-            _info.whoami=msg.sender;
-            emit successLog(_name,_birthday,_addr,_phone,msg.sender);
-    }
-
-
-    function call() view public returns(string memory, string memory, string memory, string memory,address){
-            return (_info.name, _info.birthday, _info.addr, _info.phone,_info.whoami);
+            emit successLog(block.timestamp,_name,_birthday,_addr,_phone,msg.sender);
     }
 }
