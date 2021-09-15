@@ -51,7 +51,7 @@
 	</style>
 </head>
 <body>
-	<h1>Report</h1>
+	<h1>Record</h1>
     <ul class="nav">
         <li><a href="privReg">Register</a></li>
         <li><a href="inspection1">Application</a>
@@ -74,16 +74,12 @@
 
     <h2>Report Success Log</h2>
 
-    <p>My Address  : <%= whoami %></p>
-    <p>Previous Contract Address : <%= previousCA %></p>
-    <p>Report Contract Address : <%= CA %></p>
-    <p>Record Contract Address : <%= recordCA %></p>
+    <p>Recording Time : <%= time %></p>
+    <p>Writer address : <%= address %></p>
+    <p>Title : <%= title %></p>
     <br>
-    <h4>Reception record</h4>
-    <p>Reception time : <%= getTime %></p>
-    <p>Planting Date : <%= plantingDate %></p>
-    <p>Estimated harvest year : <%= estimatedYear %></p>
-    <p>Sowing type : <%= select %></p>
+    <p>Content</p>
+    <p><%= content %></p>
 
 </body>
 

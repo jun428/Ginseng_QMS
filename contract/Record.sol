@@ -3,6 +3,7 @@ pragma solidity ^0.7.0;
 
 contract Record{
 
+    bool pass;
     address admin;
     address previousCA;
 
@@ -20,11 +21,18 @@ contract Record{
     }
 
 
+    event result(
+        bool pass,
+        uint time,
+        address preCA,
+        address admin
+    );
+
     event history(
         uint time,
         address whoami,
         string title,
-        string conent
+        string content
     );
 
 
@@ -35,12 +43,22 @@ contract Record{
 
     function record(
         string memory _title,
-        string memory _conent) adminCheck public{
+        string memory _content) public{
             emit history(
                 block.timestamp,
                 msg.sender,
                 _title,
-                _conent);
+                _content);
         }
+
+    function Pass(bool _pass) adminCheck public{
+        pass=_pass;
+        emit result(
+            _pass,
+            block.timestamp,
+            previousCA,
+            msg.sender
+        );
+    }
 
 }

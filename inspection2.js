@@ -8,11 +8,11 @@ const time = require('./unixTime.js')
 
 
 const fs = require('fs')
-const dataBuffer = fs.readFileSync('./compile/inspection1.abi')
+const dataBuffer = fs.readFileSync('./compile/inspection2.abi')
 const dataJSON = JSON.parse(dataBuffer);
 
 //bin
-const binBuffer = fs.readFileSync('./compile/inspection1.bin')
+const binBuffer = fs.readFileSync('./compile/inspection2.bin')
 const binData = binBuffer.toString()
 
 exports.deploy =async (parm,besuPrivKey) =>{
@@ -55,12 +55,13 @@ exports.deploy =async (parm,besuPrivKey) =>{
  //front return 
  exports.getLog =async (CA) =>{
 
+    let topic = web3.utils.sha3('successLog(uint256,address,address,string,string,string)')
+
     let data = {
         address : CA,
-        topics : ['0xa7f1c7dab6b5bfcfe8dabaad74604ae7506086c199ab1265ae1594c283f478b9']
+        topics : [topic]
     }
 
-    console.log(data)
 
     let result = await web3.eth.getPastLogs(data)
 

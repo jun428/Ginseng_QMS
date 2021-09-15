@@ -4,7 +4,7 @@ pragma solidity ^0.7.0;
 contract PrivReg{
 
 
-    address whoami;
+    address from;
     
     event successLog(
         uint time,
@@ -12,11 +12,11 @@ contract PrivReg{
         string birthday,
         string addr,
         string phone,
-        address whoami
+        address from
     );
         
     modifier check{
-        require(whoami==msg.sender,"test check");
+        require(from==msg.sender,"test check");
         _;
     }
 
@@ -26,7 +26,7 @@ contract PrivReg{
         string memory _addr,
         string memory _phone
         ){
-            whoami=msg.sender;
+            from=msg.sender;
             emit successLog(block.timestamp,_name,_birthday,_addr,_phone,msg.sender);
     }
     

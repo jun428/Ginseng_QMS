@@ -15,7 +15,7 @@ const binBuffer = fs.readFileSync('./compile/Record.bin')
 const binData = binBuffer.toString()
 
 
-exports.deploy =async (preCA,besuPrivKey) =>{
+exports.deploy =async (preCA) =>{
 
     let abiEncod = await web3.eth.abi.encodeParameter('address',preCA)
 
@@ -26,7 +26,7 @@ exports.deploy =async (preCA,besuPrivKey) =>{
     }
 
     //admin sgin
-    let signRLP = await web3.eth.accounts.signTransaction(tran,besuPrivKey)
+    let signRLP = await web3.eth.accounts.signTransaction(tran,besu.node1.besu_pri)
     let txHash = await web3.eth.sendSignedTransaction(signRLP.rawTransaction)
 
     console.log("record : deploy\n")
@@ -36,7 +36,7 @@ exports.deploy =async (preCA,besuPrivKey) =>{
 
 exports.logRecord =async (recordCA,besuPrivKey,parm) =>{
 
-    let funAbiEncod = await web3.eth.abi.encodeFunctionCall(dataJSON[3],parm)
+    let funAbiEncod = await web3.eth.abi.encodeFunctionCall(dataJSON[5],parm)
 
 
     let funTran = {
@@ -50,7 +50,7 @@ exports.logRecord =async (recordCA,besuPrivKey,parm) =>{
     let funSignRLP = await web3.eth.accounts.signTransaction(funTran,besuPrivKey)
     let funTxHash = await web3.eth.sendSignedTransaction(funSignRLP.rawTransaction)
 
-    console.log("report : deploy\n")
+    console.log("record : deploy\n")
     console.log(funTxHash)
     return funTxHash
 
@@ -60,9 +60,11 @@ exports.logRecord =async (recordCA,besuPrivKey,parm) =>{
 //front return 
 exports.getLog =async (CA) =>{
 
+    topic =web3.utils.sha3('history(uint256,address,string,string)')
+
     let data = {
         address : CA,
-        topics : []
+        topics : [topic]
     }
 
 
@@ -84,7 +86,7 @@ exports.getLog =async (CA) =>{
     let getTime = time.unix_timestamp(logData.time)
     return {
         logData,
-        getTime,
-        CA
+        CA,
+        getTime
     }
 }
